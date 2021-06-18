@@ -19,10 +19,11 @@
  */
 
 //OW
-#define OWVERSIONSTR  "v28rc02"
+#define OWVERSIONSTR  "v29rc01"
 //OWEND
 
 /*
+v28 2021-06-18
 module mavlink handling even further improved
 upgraded to otx2.3.12 as base
 v27 2021-06-10
