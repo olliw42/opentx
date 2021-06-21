@@ -76,6 +76,8 @@ void rotaryEncoderCheck()
   uint8_t pins = ROTARY_ENCODER_POSITION();
 
   if (pins != (state & 0x03) && !(readKeys() & (1 << KEY_ENTER))) {
+//OW that's the original code
+/*
     if ((pins & 0x01) ^ ((pins & 0x02) >> 1)) {
       if ((state & 0x03) == 3)
         ++rotencValue;
@@ -89,6 +91,25 @@ void rotaryEncoderCheck()
       else if ((state & 0x03) == 0)
          ++rotencValue;
     }
+*/
+//RistoRoller, based on MikeBlandford's code
+    if ((pins ^ (state & 0x03)) == 0x03) {
+      if (pins == 3) {
+        rotencValue += 2;
+      }
+      else {
+        rotencValue -= 2;
+      }
+    }
+    else {
+      if ((state & 0x01) ^ ((pins & 0x02) >> 1)) {
+        rotencValue -= 1;
+      }
+      else {
+        rotencValue += 1;
+      }
+    }
+//OWEND
     state &= ~0x03 ;
     state |= pins ;
 #else
