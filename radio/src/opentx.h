@@ -19,7 +19,7 @@
  */
 
 //OW
-#define OWVERSIONSTR  "v29rc01"
+#define OWVERSIONSTR  "v30rc01"
 //OWEND
 
 /*
