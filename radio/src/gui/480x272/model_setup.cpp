@@ -1390,7 +1390,6 @@ bool menuModelSetup(event_t event)
 
       case ITEM_MODEL_SETUP_MAVLINK_RSSISCALE: {
         lcdDrawText(MENUS_MARGIN_LEFT + INDENT_WIDTH, y, STR_MAVLINK_RSSI_SCALE);
-        //g_model.mavlinkRssi = editCheckBox(g_model.mavlinkRssi, MODEL_SETUP_2ND_COLUMN, y, attr, event);
         lcdDrawNumber(MODEL_SETUP_2ND_COLUMN, y, (int16_t)g_model.mavlinkRssiScale, attr | LEFT, 0, NULL, "");
         if (attr) {
           int16_t scale = g_model.mavlinkRssiScale;
@@ -1403,13 +1402,13 @@ bool menuModelSetup(event_t event)
       case ITEM_MODEL_SETUP_MAVLINK_MIMICSENSORS: {
         lcdDrawText(MENUS_MARGIN_LEFT + INDENT_WIDTH, y, STR_MAVLINK_SENSOR_MIMICRY);
         g_model.mavlinkMimicSensors = editCheckBox(g_model.mavlinkMimicSensors, MODEL_SETUP_2ND_COLUMN, y, attr, event);
-        //g_model.mavlinkMimicSensors = editChoice(MODEL_SETUP_2ND_COLUMN, y, "\010""off\0\0\0\0\0\0\0""FrSky\0\0\0\0\0""CrossFire\0""FrSky pass", g_model.mavlinkMimicSensors, 0, 3, attr, event);
         break;
       }
 
       case ITEM_MODEL_SETUP_MAVLINK_RCOVERRIDE: {
         lcdDrawText(MENUS_MARGIN_LEFT + INDENT_WIDTH, y, STR_MAVLINK_RC_OVERRIDE);
-        g_model.mavlinkRcOverride = editCheckBox(g_model.mavlinkRcOverride, MODEL_SETUP_2ND_COLUMN, y, attr, event);
+        if (g_model.mavlinkRcOverride > 14) g_model.mavlinkRcOverride = 7; // sanitize
+        g_model.mavlinkRcOverride = editChoice(MODEL_SETUP_2ND_COLUMN, y, STR_MAVLINK_RC_OVERRIDE_FREQUENCIES, g_model.mavlinkRcOverride, 0, 14, attr, event);
         break;
       }
 #endif

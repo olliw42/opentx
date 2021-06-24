@@ -981,6 +981,7 @@ extern const char STR_MAVLINK_RSSI[];
 extern const char STR_MAVLINK_RSSI_SCALE[];
 extern const char STR_MAVLINK_SENSOR_MIMICRY[];
 extern const char STR_MAVLINK_RC_OVERRIDE[];
+extern const char STR_MAVLINK_RC_OVERRIDE_FREQUENCIES[];
 extern const char STR_MAVLINK_AUX_SERIAL_MODES[];
 extern const char STR_MAVLINK_AUX_BAUDRATE[];
 extern const char STR_MAVLINK_AUX2_BAUDRATE[];
