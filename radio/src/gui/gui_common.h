@@ -179,6 +179,13 @@ inline uint8_t MODULE_CHANNELS_ROWS(int moduleIdx)
   else if (isModuleDSM2(moduleIdx) || isModuleCrossfire(moduleIdx) || isModuleGhost(moduleIdx) || isModuleSBUS(moduleIdx)) {
     return 0;
   }
+//OW
+#if defined(TELEMETRY_MAVLINK)
+  else if (isModuleMavlink(moduleIdx)) {
+    return HIDDEN_ROW;
+  }
+#endif
+//OWEND
   else {
     return 1;
   }

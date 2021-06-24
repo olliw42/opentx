@@ -35,6 +35,13 @@ void onUSBConnectMenu(const char *result)
   else if (result == STR_USB_JOYSTICK) {
     setSelectedUsbMode(USB_JOYSTICK_MODE);
   }
+//OW
+#if defined(TELEMETRY_MAVLINK_USB_SERIAL)
+  else if (result == STR_USB_MAVLINK) {
+    setSelectedUsbMode(USB_MAVLINK_MODE);
+  }
+#endif
+//OWEND
   else if (result == STR_USB_SERIAL) {
     setSelectedUsbMode(USB_SERIAL_MODE);
   }
@@ -52,6 +59,11 @@ void handleUsbConnection()
 #if defined(DEBUG)
         POPUP_MENU_ADD_ITEM(STR_USB_SERIAL);
 #endif
+//OW
+#if defined(TELEMETRY_MAVLINK_USB_SERIAL)
+        POPUP_MENU_ADD_ITEM(STR_USB_MAVLINK);
+#endif
+//OWEND
         POPUP_MENU_TITLE(STR_SELECT_MODE);
         POPUP_MENU_START(onUSBConnectMenu);
       }
