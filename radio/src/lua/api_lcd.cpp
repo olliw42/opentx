@@ -1092,6 +1092,23 @@ static int luaLcdDrawHudRectangle(lua_State *L)
 //OWEND
 
 const luaL_Reg lcdLib[] = {
+//OW
+  { "drawCircleQuarter", luaLcdDrawCircleQuarter },
+  { "drawFilledCircleQuarter", luaLcdDrawFilledCircleQuarter },
+  { "drawCircle", luaLcdDrawCircle },
+  { "drawFilledCircle", luaLcdDrawFilledCircle },
+
+  { "drawCircleLOUI", luaLcdDrawCircleLOUI },
+  { "drawFilledCircleLOUI", luaLcdDrawFilledCircleLOUI },
+
+  { "drawTriangle", luaLcdDrawTriangle },
+  { "drawFilledTriangle", luaLcdDrawFilledTriangle },
+  { "drawArc", luaLcdDrawArc },
+  { "drawPie", luaLcdDrawPie },
+  { "drawAnnulus", luaLcdDrawAnnulus },
+  { "drawLineWithClipping", luaLcdDrawLineWithClipping },
+  { "drawHudRectangle", luaLcdDrawHudRectangle },
+//OWEND
   { "refresh", luaLcdRefresh },
   { "clear", luaLcdClear },
   { "resetBacklightTimeout", luaLcdResetBacklightTimeout },
@@ -1119,22 +1136,5 @@ const luaL_Reg lcdLib[] = {
   { "drawScreenTitle", luaLcdDrawScreenTitle },
   { "drawCombobox", luaLcdDrawCombobox },
 #endif
-//OW
-  { "drawCircleQuarter", luaLcdDrawCircleQuarter },
-  { "drawFilledCircleQuarter", luaLcdDrawFilledCircleQuarter },
-  { "drawCircle", luaLcdDrawCircle },
-  { "drawFilledCircle", luaLcdDrawFilledCircle },
-
-  { "drawCircleLOUI", luaLcdDrawCircleLOUI },
-  { "drawFilledCircleLOUI", luaLcdDrawFilledCircleLOUI },
-
-  { "drawTriangle", luaLcdDrawTriangle },
-  { "drawFilledTriangle", luaLcdDrawFilledTriangle },
-  { "drawArc", luaLcdDrawArc },
-  { "drawPie", luaLcdDrawPie },
-  { "drawAnnulus", luaLcdDrawAnnulus },
-  { "drawLineWithClipping", luaLcdDrawLineWithClipping },
-  { "drawHudRectangle", luaLcdDrawHudRectangle },
-//OWEND
   { NULL, NULL }  /* sentinel */
 };
