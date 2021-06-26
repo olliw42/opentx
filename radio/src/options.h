@@ -105,6 +105,12 @@ static const char * const options[] = {
 #if defined(TELEMETRY_MAVLINK)
   "mavlink",
 #endif
+#if defined(CLI)
+  "cli",
+#endif
+#if defined(DEBUG)
+  "debug",
+#endif
   "olliw-" OWVERSIONSTR, //FIXME: JUST FOR NOW, WILL HAVE TO BE REMOVED
 //OWEND
   nullptr //sentinel
