@@ -987,6 +987,9 @@ extern const char STR_MAVLINK_AUX_BAUDRATE[];
 extern const char STR_MAVLINK_AUX2_BAUDRATE[];
 extern const char STR_MAVLINK_AUX_BAUDRATES[];
 extern const char STR_USB_MAVLINK[];
+
+extern const char STR_USBMODES_OW[];
+extern const char STR_USB_SERIAL_OW[];
 #endif
 //OWEND
 

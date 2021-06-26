@@ -225,7 +225,7 @@ MAVLINK_RAM_SECTION Fifo<uint8_t, 1024> aux2SerialTxFifo;
 MAVLINK_RAM_SECTION Fifo<uint8_t, 1024> mavlinkTelemAux2SerialRxFifo;
 #endif
 
-#if defined(TELEMETRY_MAVLINK) && defined(USB_SERIAL)
+#if defined(TELEMETRY_MAVLINK_USB_SERIAL)
 MAVLINK_RAM_SECTION Fifo<uint8_t, 1024> mavlinkTelemUsbRxFifo;
 #endif
 

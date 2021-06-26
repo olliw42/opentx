@@ -419,6 +419,29 @@ bool isAux2ModeAvailable(int mode)
   return true;
 }
 
+//OW
+bool isUsbModeAvailable(int mode)
+{
+  if (mode == USB_SERIAL_MODE) {
+#if defined(USB_SERIAL)
+    return true;
+#else
+    return false;
+#endif
+  }
+
+  if (mode == USB_MAVLINK_MODE) {
+#if defined(TELEMETRY_MAVLINK_USB_SERIAL)
+    return true;
+#else
+    return false;
+#endif
+  }
+
+  return true;
+}
+//OWEND
+
 bool isSwitchAvailableInLogicalSwitches(int swtch)
 {
   return isSwitchAvailable(swtch, LogicalSwitchesContext);

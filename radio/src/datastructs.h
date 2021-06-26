@@ -841,7 +841,10 @@ PACK(struct RadioData {
   NOBACKUP(uint8_t  imperial:1);
   NOBACKUP(uint8_t  jitterFilter:1); /* 0 - active */
   NOBACKUP(uint8_t  disableRssiPoweroffAlarm:1);
-  NOBACKUP(uint8_t  USBMode:2);
+//OW
+//  NOBACKUP(uint8_t  USBMode:2);
+  NOBACKUP(uint8_t  spare_oldUSBMode:2);
+//OWEND
   NOBACKUP(uint8_t  jackMode:2);
   NOBACKUP(uint8_t  sportUpdatePower:1);
   NOBACKUP(char     ttsLanguage[2]);
@@ -865,7 +868,8 @@ PACK(struct RadioData {
 #if defined(TELEMETRY_MAVLINK)
   uint16_t mavlinkBaudrate:3;
   uint16_t mavlinkBaudrate2:3;
-  uint16_t mavlinkSpare:10;
+  NOBACKUP(uint16_t USBMode:3);
+  uint16_t mavlinkSpare:7;
   // needs to adapt CHKSIZE below
 #endif
 //OWEND

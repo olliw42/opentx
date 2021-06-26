@@ -72,6 +72,9 @@ bool isSourceAvailableInResetSpecialFunction(int index);
 bool isSourceAvailableInGlobalResetSpecialFunction(int index);
 bool isAux1ModeAvailable(int mode);
 bool isAux2ModeAvailable(int mode);
+//OW
+bool isUsbModeAvailable(int mode);
+//OWEND
 bool isSwitchAvailableInLogicalSwitches(int swtch);
 bool isSwitchAvailableInCustomFunctions(int swtch);
 bool isSwitchAvailableInMixes(int swtch);

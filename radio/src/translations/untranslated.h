@@ -166,4 +166,9 @@
 #define LEN_MAVLINK_AUX_BAUDRATES      "\006"
 #define TR_MAVLINK_AUX_BAUDRATES       "57600\0""115200""38400\0""19200\0"
 #define TR_USB_MAVLINK                 "USB Mavlink (VCP)"
+
+#define LEN_USBMODES_OW                "\010"
+#define TR_USBMODES_OW                 "Ask\0    ""Joystick""Storage\0""Serial\0 ""Mavlink\0"
+
+#define TR_USB_SERIAL_OW               "USB Serial (VCP)"
 //OWEND
