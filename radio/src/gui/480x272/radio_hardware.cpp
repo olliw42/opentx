@@ -400,11 +400,7 @@ bool menuRadioHardware(event_t event)
 #endif
 //OW
 //        g_eeGeneral.auxSerialMode = editChoice(HW_SETTINGS_COLUMN2, y, STR_AUX_SERIAL_MODES, g_eeGeneral.auxSerialMode, 0, UART_MODE_MAX, attr, event, isAux1ModeAvailable);
-#if defined(TELEMETRY_MAVLINK)
-        g_eeGeneral.auxSerialMode = editChoice(HW_SETTINGS_COLUMN2, y, STR_MAVLINK_AUX_SERIAL_MODES, g_eeGeneral.auxSerialMode, 0, UART_MODE_MAX, attr, event, isAux1ModeAvailable);
-#else
-        g_eeGeneral.auxSerialMode = editChoice(HW_SETTINGS_COLUMN2, y, STR_AUX_SERIAL_MODES, g_eeGeneral.auxSerialMode, 0, UART_MODE_MAX, attr, event, isAux1ModeAvailable);
-#endif
+        g_eeGeneral.auxSerialMode = editChoice(HW_SETTINGS_COLUMN2, y, STR_AUX_SERIAL_MODES_OW, g_eeGeneral.auxSerialMode, 0, UART_MODE_MAX, attr, event, isAux1ModeAvailable);
 //OWEND
         if (attr && checkIncDec_Ret) {
           auxSerialInit(g_eeGeneral.auxSerialMode, modelTelemetryProtocol());
@@ -420,11 +416,7 @@ bool menuRadioHardware(event_t event)
 #endif
 //OW
 //        g_eeGeneral.aux2SerialMode = editChoice(HW_SETTINGS_COLUMN2, y, STR_AUX_SERIAL_MODES, g_eeGeneral.aux2SerialMode, 0, UART_MODE_MAX, attr, event, isAux2ModeAvailable);
-#if defined(TELEMETRY_MAVLINK)
-        g_eeGeneral.aux2SerialMode = editChoice(HW_SETTINGS_COLUMN2, y, STR_MAVLINK_AUX_SERIAL_MODES, g_eeGeneral.aux2SerialMode, 0, UART_MODE_MAX, attr, event, isAux2ModeAvailable);
-#else
-        g_eeGeneral.aux2SerialMode = editChoice(HW_SETTINGS_COLUMN2, y, STR_AUX_SERIAL_MODES, g_eeGeneral.aux2SerialMode, 0, UART_MODE_MAX, attr, event, isAux2ModeAvailable);
-#endif
+        g_eeGeneral.aux2SerialMode = editChoice(HW_SETTINGS_COLUMN2, y, STR_AUX_SERIAL_MODES_OW, g_eeGeneral.aux2SerialMode, 0, UART_MODE_MAX, attr, event, isAux2ModeAvailable);
 //OWEND
         if (attr && checkIncDec_Ret) {
           aux2SerialInit(g_eeGeneral.aux2SerialMode, modelTelemetryProtocol());
@@ -433,7 +425,7 @@ bool menuRadioHardware(event_t event)
 #endif
 
 //OW
-#if defined(TELEMETRY_MAVLINK) && defined(AUX_SERIAL)
+#if defined(AUX_SERIAL) && defined(TELEMETRY_MAVLINK)
       case ITEM_RADIO_HARDWARE_MAVLINK_BAUDRATE:
         lcdDrawText(MENUS_MARGIN_LEFT, y, STR_MAVLINK_AUX_BAUDRATE);
         g_eeGeneral.mavlinkBaudrate = editChoice(HW_SETTINGS_COLUMN2, y, STR_MAVLINK_AUX_BAUDRATES, g_eeGeneral.mavlinkBaudrate, 0, 3, attr, event);
@@ -442,7 +434,7 @@ bool menuRadioHardware(event_t event)
         }
         break;
 #endif
-#if defined(TELEMETRY_MAVLINK) && defined(AUX2_SERIAL)
+#if defined(AUX2_SERIAL) && defined(TELEMETRY_MAVLINK)
       case ITEM_RADIO_HARDWARE_MAVLINK_BAUDRATE2:
         lcdDrawText(MENUS_MARGIN_LEFT, y, STR_MAVLINK_AUX2_BAUDRATE);
         g_eeGeneral.mavlinkBaudrate2 = editChoice(HW_SETTINGS_COLUMN2, y, STR_MAVLINK_AUX_BAUDRATES, g_eeGeneral.mavlinkBaudrate2, 0, 3, attr, event);

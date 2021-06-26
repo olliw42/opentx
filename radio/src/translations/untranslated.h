@@ -159,8 +159,6 @@
 #define TR_MAVLINK_RC_OVERRIDE         "RC Override"
 #define LEN_MAVLINK_RC_OVERRIDE_FREQUENCIES "\006"
 #define TR_MAVLINK_RC_OVERRIDE_FREQUENCIES  "OFF\0  ""1Hz\0  ""2Hz\0  ""3Hz\0  ""4Hz\0  ""5Hz\0  ""7.7Hz\0""10Hz\0 ""12.5Hz""14.3Hz""16.7Hz""20Hz\0 ""25Hz\0 ""33.3Hz""50Hz\0 "
-#define LEN_MAVLINK_AUX_SERIAL_MODES   "\015"
-#define TR_MAVLINK_AUX_SERIAL_MODES    "OFF\0         ""Telem Mirror\0""Telemetry In\0""SBUS Trainer\0""LUA\0         ""Mavlink\0     "
 #define TR_MAVLINK_AUX_BAUDRATE        "Mavlink baudrate"
 #define TR_MAVLINK_AUX2_BAUDRATE       "Mavlink baudrate 2"
 #define LEN_MAVLINK_AUX_BAUDRATES      "\006"
@@ -169,6 +167,13 @@
 
 #define LEN_USBMODES_OW                "\010"
 #define TR_USBMODES_OW                 "Ask\0    ""Joystick""Storage\0""Serial\0 ""Mavlink\0"
+
+#define LEN_AUX_SERIAL_MODES_OW        "\015"
+#if defined(CLI) || defined(DEBUG)
+#define TR_AUX_SERIAL_MODES_OW         "Debug\0       ""Telem Mirror\0""Telemetry In\0""SBUS Trainer\0""LUA\0         ""Mavlink\0     "
+#else
+#define TR_AUX_SERIAL_MODES_OW         "OFF\0         ""Telem Mirror\0""Telemetry In\0""SBUS Trainer\0""LUA\0         ""Mavlink\0     "
+#endif
 
 #define TR_USB_SERIAL_OW               "USB Serial (VCP)"
 //OWEND
