@@ -632,7 +632,10 @@ void sportUpdatePowerInit();
 #endif
 
 // Aux serial port driver
-#if defined(RADIO_TX16S)
+//OW
+//#if defined(RADIO_TX16S)
+#if defined(RADIO_TX16S) && !defined(TELEMETRY_MAVLINK)
+//OWEND
   #define DEBUG_BAUDRATE                  400000
   #define LUA_DEFAULT_BAUDRATE            115200
 #else
