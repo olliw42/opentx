@@ -23,6 +23,7 @@
 //OWEND
 
 /*
+usb serial revamped
 upgraded to otx2.3.13 as base
 v28 2021-06-18
 module mavlink handling even further improved
