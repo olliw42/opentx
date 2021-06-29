@@ -57,6 +57,9 @@ uint8_t mavlinkTelem3Getc(uint8_t *c);
 bool mavlinkTelem3HasSpace(uint16_t count);
 bool mavlinkTelem3PutBuf(const uint8_t *buf, const uint16_t count);
 
+// -- more Interface --
+tmr10ms_t mavlinkRcOverrideRate(void);
+
 // -- fastMavlink --
 
 #define FASTMAVLINK_RAM_SECTION  static MAVLINK_RAM_SECTION

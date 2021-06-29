@@ -352,17 +352,7 @@ void MavlinkTelem::doTask(void)
   // per MAVLink spec 0 and UNIT16_MAX should not be considered for channels >= 8, but it doesn't do it for 0
   // but we can hope that it handles 0 for the higher channels
   if (g_model.mavlinkRcOverride && param.SYSID_MYGCS >= 0) {
-    tmr10ms_t dt_10ms = 10; // 100 ms = 10 Hz = default
-    switch (g_model.mavlinkRcOverride) {
-      case 1: case 2: case 3: case 4: case 5:
-        dt_10ms = 100 / g_model.mavlinkRcOverride; // 1, 2, 3, 4, 5 Hz => 100 / val;
-        break;
-      case 6: dt_10ms = 13; break; // 7.7 Hz
-      case 7: dt_10ms = 10; break; // 10 Hz
-      case 8: case 9: case 10: case 11: case 12: case 13: case 14:
-        dt_10ms = 16 - g_model.mavlinkRcOverride; // 12.5, 14.3, 16.7, 20, 25, 33.3, 50 Hz => 16 - val;
-        break;
-    }
+    tmr10ms_t dt_10ms = mavlinkRcOverrideRate();
     if ((tnow - _rcoverride_tlast) >= dt_10ms) {
       _rcoverride_tlast += dt_10ms;
       if ((tnow - _rcoverride_tlast) >= dt_10ms) _rcoverride_tlast = tnow; //we are late, so get back in sync

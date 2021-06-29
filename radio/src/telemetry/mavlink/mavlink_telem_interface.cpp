@@ -369,7 +369,34 @@ bool mavlinkTelem3HasSpace(uint16_t count){ return false; }
 bool mavlinkTelem3PutBuf(const uint8_t* buf, const uint16_t count){ return false; }
 #endif
 
-// -- MavlinkTelem stuff --
+// -- more Interface helpers --
+
+tmr10ms_t mavlinkRcOverrideRate(void)
+{
+  switch (g_model.mavlinkRcOverride) {
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+      return 100 / g_model.mavlinkRcOverride; // 1, 2, 3, 4, 5 Hz => 100 / val;
+    case 6:
+      return 13; // 7.7 Hz
+    case 7:
+      return 10; // 10 Hz
+    case 8:
+    case 9:
+    case 10:
+    case 11:
+    case 12:
+    case 13:
+    case 14:
+      return 16 - g_model.mavlinkRcOverride; // 12.5, 14.3, 16.7, 20, 25, 33.3, 50 Hz => 16 - val;
+  }
+  return 10; // 100 ms = 10 Hz = default
+}
+
+// -- MavlinkTelem handlers --
 
 // map aux1,aux2,external onto serial1 & serial2
 void MavlinkTelem::map_serials(void)
