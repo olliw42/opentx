@@ -506,7 +506,7 @@ static int luaMavsdkIsArmed(lua_State *L)
 
 // -- MAVSDK RADIO  --
 
-static int luaMavsdkGetRadioRssi(lua_State *L)
+static int luaMavsdkGetRadioRssiRaw(lua_State *L)
 {
   uint8_t rssi = UINT8_MAX;
   if (mavlinkTelem.radio.is_receiving) {
@@ -538,32 +538,23 @@ static int luaMavsdkGetRadioRssiScaled(lua_State *L)
   return 1;
 }
 
-static int luaMavsdkGetRadioRemoteRssi(lua_State *L)
+static int luaMavsdkGetRadioRssi(lua_State *L)
 {
-  if (mavlinkTelem.radio.is_receiving) {
-    lua_pushinteger(L, mavlinkTelem.radio.remrssi);
+  // we return the raw value if scale = 0, else we return the scaled value
+  if (g_model.mavlinkRssiScale > 0) {
+    return luaMavsdkGetRadioRssiScaled(L);
   }
-  else {
-    lua_pushnil(L);
-  }
-  return 1;
+  return luaMavsdkGetRadioRssiRaw(L);
 }
 
-static int luaMavsdkGetRadioNoise(lua_State *L)
+static int luaMavsdkGetRadioStatus(lua_State *L)
 {
   if (mavlinkTelem.radio.is_receiving) {
-    lua_pushinteger(L, mavlinkTelem.radio.noise);
-  }
-  else {
-    lua_pushnil(L);
-  }
-  return 1;
-}
-
-static int luaMavsdkGetRadioRemoteNoise(lua_State *L)
-{
-  if (mavlinkTelem.radio.is_receiving) {
-    lua_pushinteger(L, mavlinkTelem.radio.remnoise);
+    lua_newtable(L);
+    lua_pushtableinteger(L, "rssi", mavlinkTelem.radio.rssi);
+    lua_pushtableinteger(L, "remrssi", mavlinkTelem.radio.remrssi);
+    lua_pushtableinteger(L, "noise", mavlinkTelem.radio.noise);
+    lua_pushtableinteger(L, "remnoise", mavlinkTelem.radio.remnoise);
   }
   else {
     lua_pushnil(L);
@@ -1443,10 +1434,9 @@ const luaL_Reg mavsdkLib[] = {
   { "cameraTakePhoto", luaMavsdkCameraTakePhoto },
 
   { "getRadioRssi", luaMavsdkGetRadioRssi },
-  { "getRadioRemoteRssi", luaMavsdkGetRadioRemoteRssi },
-  { "getRadioNoise", luaMavsdkGetRadioNoise },
-  { "getRadioRemoteNoise", luaMavsdkGetRadioRemoteNoise },
+  { "getRadioRssiRaw", luaMavsdkGetRadioRssiRaw },
   { "getRadioRssiScaled", luaMavsdkGetRadioRssiScaled },
+  { "getRadioStatus", luaMavsdkGetRadioStatus },
 
   { "getSystemStatusSensors", luaMavsdkGetSystemStatusSensors },
 

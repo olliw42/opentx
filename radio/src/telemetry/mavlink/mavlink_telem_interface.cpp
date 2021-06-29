@@ -437,7 +437,7 @@ void MavlinkTelem::telemetrySetValue(uint16_t id, uint8_t subId, uint8_t instanc
 
   if (g_model.mavlinkMimicSensors) {
     setTelemetryValue(PROTOCOL_TELEMETRY_FRSKY_SPORT, id, subId, instance, value, unit, prec);
-    telemetryStreaming = MAVLINK_TELEM_RADIO_RECEIVING_TIMEOUT; //2 * TELEMETRY_TIMEOUT10ms; // 2 seconds
+    telemetryStreaming = MAVLINK_TELEM_RADIO_RECEIVING_TIMEOUT;
   }
 }
 
@@ -449,7 +449,7 @@ void MavlinkTelem::telemetrySetRssiValue(uint8_t rssi)
       if (rssi == UINT8_MAX) rssi = 0;
     }
     if (rssi > g_model.mavlinkRssiScale) rssi = g_model.mavlinkRssiScale; //constrain
-    rssi = (uint8_t)( ((uint16_t)rssi * 100) / g_model.mavlinkRssiScale); //scale to 0..99
+    rssi = (uint8_t)( ((uint16_t)rssi * 100) / g_model.mavlinkRssiScale); //scale to 0..100
   }
   else { //mavlink default
     if (rssi == UINT8_MAX) rssi = 0;
@@ -459,16 +459,14 @@ void MavlinkTelem::telemetrySetRssiValue(uint8_t rssi)
 
   if (g_model.mavlinkRssi) {
     if (!radio.is_receiving && !radio.is_receiving65 && !radio.is_receiving35) return;
-  }
 
-  if (g_model.mavlinkRssi) {
     telemetryData.rssi.set(rssi);
-    telemetryStreaming = MAVLINK_TELEM_RADIO_RECEIVING_TIMEOUT; //2 * TELEMETRY_TIMEOUT10ms; // 2 seconds
+    telemetryStreaming = MAVLINK_TELEM_RADIO_RECEIVING_TIMEOUT;
   }
 
   if (g_model.mavlinkRssi || g_model.mavlinkMimicSensors) {
     setTelemetryValue(PROTOCOL_TELEMETRY_FRSKY_SPORT, RSSI_ID, 0, 1, (int32_t)rssi, UNIT_DB, 0);
-    telemetryStreaming = MAVLINK_TELEM_RADIO_RECEIVING_TIMEOUT; //2 * TELEMETRY_TIMEOUT10ms; // 2 seconds
+    telemetryStreaming = MAVLINK_TELEM_RADIO_RECEIVING_TIMEOUT;
   }
   //#if defined(MULTIMODULE)
   //{ TX_RSSI_ID, TX_RSSI_ID, 0, ZSTR_TX_RSSI   , UNIT_DB , 0 },
@@ -482,11 +480,13 @@ void MavlinkTelem::telemetryResetRssiValue(void)
 
   radio.rssi_scaled = 0;
 
-  if (g_model.mavlinkRssi)
+  if (g_model.mavlinkRssi) {
     telemetryData.rssi.reset();
+  }
 
-  if (g_model.mavlinkRssi || g_model.mavlinkMimicSensors)
+  if (g_model.mavlinkRssi || g_model.mavlinkMimicSensors) {
     setTelemetryValue(PROTOCOL_TELEMETRY_FRSKY_SPORT, RSSI_ID, 0, 1, 0, UNIT_DB, 0);
+  }
 }
 
 bool MavlinkTelem::telemetryVoiceEnabled(void)
