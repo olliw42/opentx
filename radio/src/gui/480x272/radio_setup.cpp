@@ -292,7 +292,7 @@ bool menuRadioSetup(event_t event)
         lcdDrawText(MENUS_MARGIN_LEFT, y, STR_VARIO);
         break;
       case ITEM_SETUP_VARIO_VOLUME:
-        lcdDrawText(MENUS_MARGIN_LEFT, y, TR_SPEAKER_VOLUME);
+        lcdDrawText(MENUS_MARGIN_LEFT, y, STR_SPEAKER_VOLUME);
         g_eeGeneral.varioVolume = editSlider(RADIO_SETUP_2ND_COLUMN, y, event, g_eeGeneral.varioVolume, -2, +2, attr);
         break;
       case ITEM_SETUP_VARIO_PITCH:
