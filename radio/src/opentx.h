@@ -19,10 +19,13 @@
  */
 
 //OW
-#define OWVERSIONSTR  "v30rc04"
+#define OWVERSIONSTR  "v30rc06"
 //OWEND
 
 /*
+basic touch, for tx16s
+new keys
+serials moved from hardware to radio setup
 usb serial revamped
 upgraded to otx2.3.13 as base
 v28 2021-06-18
