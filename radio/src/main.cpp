@@ -517,6 +517,11 @@ void perMain()
   checkBacklight();
 
   event_t evt = getEvent(false);
+//OW
+#if defined(HARDWARE_TOUCH)
+  touchPanelRead();
+#endif
+//OWEND
 
 #if defined(RTC_BACKUP_RAM)
   if (globalData.unexpectedShutdown) {

@@ -23,6 +23,11 @@
 #include "opentx.h"
 #include "bin_allocator.h"
 #include "lua_api.h"
+//OW
+#if defined(HARDWARE_TOUCH)
+#include "touch.h"
+#endif
+//OWEND
 
 #define WIDGET_SCRIPTS_MAX_INSTRUCTIONS    (10000/100)
 #define MANUAL_SCRIPTS_MAX_INSTRUCTIONS    (20000/100)
@@ -419,6 +424,19 @@ void LuaWidget::refresh()
 
   lua_newtable(lsWidgets);
   l_pushtableint("event", evt);
+#if defined(HARDWARE_TOUCH)
+  TouchState touch = touchState;
+  lua_pushstring(lsWidgets, "touch");
+  lua_newtable(lsWidgets);
+  l_pushtableint("event", touch.event);
+  l_pushtableint("x", touch.x);
+  l_pushtableint("y", touch.y);
+  l_pushtableint("startX", touch.startX);
+  l_pushtableint("startY", touch.startY);
+  l_pushtableint("extEvent", touch.extEvent);
+  lua_rawset(lsWidgets, -3);
+  touchState.extEvent = TE_EXT_NONE; // clear event
+#endif
   if (lua_pcall(lsWidgets, 2, 0, 0) != 0) {
     setErrorMessage("refresh()");
   }

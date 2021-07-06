@@ -102,6 +102,9 @@ static const char * const options[] = {
   "bindkey",
 #endif
 //OW
+#if defined(HARDWARE_TOUCH)
+  "touch",
+#endif
 #if defined(TELEMETRY_MAVLINK)
   "mavlink",
 #endif

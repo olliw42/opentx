@@ -25,6 +25,9 @@
 #include "lua_api.h"
 #include "telemetry/frsky.h"
 #include "telemetry/multi.h"
+//OW
+#include "touch.h"
+//OWEND
 
 #if defined(PCBX12S)
   #include "lua/lua_exports_x12s.inc"   // this line must be after lua headers
@@ -2021,6 +2024,15 @@ const luaR_value_entry opentxConstants[] = {
   { "KEY_TELEM", (1<<KEY_TELEM) },
   { "KEY_SYS", (1<<KEY_RADIO) },
   { "KEY_RTN", (1<<KEY_EXIT) },
+  { "TEVT_DOWN", TE_DOWN },
+  { "TEVT_UP", TE_UP },
+  { "TEVT_SLIDE", TE_SLIDE },
+  { "TEVT_SLIDE_END", TE_SLIDE_END },
+  { "TEVT_TAP", TE_TAP },
+  { "TEVT_WIPE_LEFT", TE_WIPE_LEFT },
+  { "TEVT_WIPE_RIGHT", TE_WIPE_RIGHT },
+  { "TEVT_WIPE_UP", TE_WIPE_UP },
+  { "TEVT_WIPE_DOWN", TE_WIPE_DOWN },
 //OWEND
 #else
   KEY_EVENTS(DOWN, KEY_DOWN),

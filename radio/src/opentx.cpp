@@ -219,7 +219,10 @@ void per10ms()
 //OW
 #if defined(TELEMETRY_MAVLINK)
   mavlinkTelem.tick10ms();
+#endif
   checkEventLockTmo();
+#if defined(HARDWARE_TOUCH)
+  checkTouchTmo();
 #endif
 //OWEND
 
