@@ -108,7 +108,6 @@ if (PCB STREQUAL X10)
         set(AUX2_SERIAL ON)
       endif()
       set(INTERNAL_GPS_BAUDRATE "9600" CACHE STRING "Baud rate for internal GPS")
-      add_definitions(-DHARDWARE_TOUCH)
     endif()
 # //OWEND
   else()
