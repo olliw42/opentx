@@ -380,6 +380,17 @@ void LuaWidget::refresh()
   if (errorMessage) {
     lcdSetColor(RED);
     lcdDrawText(zone.x, zone.y, "Disabled", SMLSIZE|CUSTOM_COLOR);
+//OW
+    int len = strlen(errorMessage);
+    int y = zone.y + 16;
+    const char *p = errorMessage;
+    while (len > 0) {
+      lcdDrawSizedText(zone.x, y, p, 60, SMLSIZE|CUSTOM_COLOR);
+      p += 60;
+      y += 16;
+      len -= 60;
+    }
+//OWEND
     return;
   }
 
