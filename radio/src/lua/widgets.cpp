@@ -398,14 +398,40 @@ void LuaWidget::refresh()
   LuaWidgetFactory * factory = (LuaWidgetFactory *)this->factory;
   lua_rawgeti(lsWidgets, LUA_REGISTRYINDEX, factory->refreshFunction);
   lua_rawgeti(lsWidgets, LUA_REGISTRYINDEX, widgetData);
-  if (lua_pcall(lsWidgets, 1, 0, 0) != 0) {
+
+//OW
+//  if (lua_pcall(lsWidgets, 1, 0, 0) != 0) {
+//    setErrorMessage("refresh()");
+//  }
+  event_t evt = s_evt;
+  if ((zone.h < 250) || (menuLevel > 0)) { // is not full screen and is in menu
+    evt = 0; // do not pass on
+    unlockKeys();
+  } else
+  // only allow locked keys & ROT events to get through
+  if (eventIsLocked(evt) || (evt == EVT_ROTARY_LEFT) || (evt == EVT_ROTARY_RIGHT)) {
+    s_evt = 0; // clear event
+  }
+  else {
+    evt = 0; // do not pass on
+    unlockKeys();
+  }
+
+  lua_newtable(lsWidgets);
+  l_pushtableint("event", evt);
+  if (lua_pcall(lsWidgets, 2, 0, 0) != 0) {
     setErrorMessage("refresh()");
   }
+//OWEND
 }
 
 void LuaWidget::background()
 {
   if (lsWidgets == 0 || errorMessage) return;
+
+//OW
+  unlockKeys();
+//OWEND
 
   luaSetInstructionsLimit(lsWidgets, WIDGET_SCRIPTS_MAX_INSTRUCTIONS);
   LuaWidgetFactory * factory = (LuaWidgetFactory *)this->factory;

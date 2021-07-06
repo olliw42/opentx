@@ -1743,30 +1743,10 @@ static int luaSerialRead(lua_State * L)
 }
 
 //OW
-static int luaGetEvent(lua_State * L)
-{
-  event_t evt = s_evt;
-  // only allow locked keys & ROT events to get through
-  if (eventIsLocked(evt) || (evt == EVT_ROTARY_LEFT) || (evt == EVT_ROTARY_RIGHT)) {
-      s_evt = 0; // clear event
-  }
-  else {
-      evt = 0; // do not pass on
-  }
-  lua_pushinteger(L, evt);
-  return 1;
-}
-
 static int luaLockKeys(lua_State * L)
 {
   uint16_t mask = luaL_checkunsigned(L, 1);
   lockKeys(mask);
-  return 0;
-}
-
-static int luaUnlockKeys(lua_State * L)
-{
-  unlockKeys();
   return 0;
 }
 
@@ -1780,9 +1760,7 @@ static int luaIsInMenu(lua_State * L)
 
 const luaL_Reg opentxLib[] = {
 //OW
-  { "getEvent", luaGetEvent },
   { "lockKeys", luaLockKeys },
-  { "unlockKeys", luaUnlockKeys },
   { "isInMenu", luaIsInMenu },
 //OWEND
   { "getTime", luaGetTime },
