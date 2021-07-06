@@ -250,7 +250,7 @@ bool menuRadioSetup(event_t event)
         break;
 
       case ITEM_SETUP_BEEP_MODE:
-        lcdDrawText(MENUS_MARGIN_LEFT, y, STR_SPEAKER);
+        lcdDrawText(MENUS_MARGIN_LEFT + INDENT_WIDTH, y, STR_SPEAKER);
         g_eeGeneral.beepMode = editChoice(RADIO_SETUP_2ND_COLUMN, y, STR_VBEEPMODE, g_eeGeneral.beepMode, -2, 1, attr, event);
         break;
 
@@ -318,7 +318,7 @@ bool menuRadioSetup(event_t event)
         break;
 
       case ITEM_SETUP_HAPTIC_MODE:
-        lcdDrawText(MENUS_MARGIN_LEFT, y, STR_MODE);
+        lcdDrawText(MENUS_MARGIN_LEFT + INDENT_WIDTH, y, STR_MODE);
         g_eeGeneral.hapticMode = editChoice(RADIO_SETUP_2ND_COLUMN, y, STR_VBEEPMODE, g_eeGeneral.hapticMode, -2, 1, attr, event);
         break;
 
