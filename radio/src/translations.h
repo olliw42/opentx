@@ -982,11 +982,10 @@ extern const char STR_MAVLINK_RSSI_SCALE[];
 extern const char STR_MAVLINK_SENSOR_MIMICRY[];
 extern const char STR_MAVLINK_RC_OVERRIDE[];
 extern const char STR_MAVLINK_RC_OVERRIDE_FREQUENCIES[];
-extern const char STR_MAVLINK_AUX_BAUDRATE[];
-extern const char STR_MAVLINK_AUX2_BAUDRATE[];
 extern const char STR_MAVLINK_AUX_BAUDRATES[];
 extern const char STR_USB_MAVLINK[];
 
+extern const char STR_SERIAL_LABEL[];
 extern const char STR_USBMODES_OW[];
 extern const char STR_AUX_SERIAL_MODES_OW[];
 extern const char STR_USB_SERIAL_OW[];
